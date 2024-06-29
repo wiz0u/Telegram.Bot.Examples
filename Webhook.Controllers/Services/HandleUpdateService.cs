@@ -2,7 +2,6 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InlineQueryResults;
-using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Telegram.Bot.Examples.WebHook.Services;
@@ -130,7 +129,7 @@ public class HandleUpdateService
             var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
 
             return await bot.SendPhotoAsync(chatId: message.Chat.Id,
-                                            photo: new InputOnlineFile(fileStream, fileName),
+                                            photo: new InputFileStream(fileStream, fileName),
                                             caption: "Nice Picture");
         }
 

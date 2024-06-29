@@ -3,7 +3,6 @@ using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InlineQueryResults;
-using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Telegram.Bot.Services;
@@ -66,7 +65,7 @@ public class UpdateHandler : IUpdateHandler
         {
             await botClient.SendChatActionAsync(
                 chatId: message.Chat.Id,
-                chatAction: ChatAction.Typing,
+                action: ChatAction.Typing,
                 cancellationToken: cancellationToken);
 
             // Simulate longer running task
@@ -137,7 +136,7 @@ public class UpdateHandler : IUpdateHandler
 
             return await botClient.SendPhotoAsync(
                 chatId: message.Chat.Id,
-                photo: new InputOnlineFile(fileStream, fileName),
+                photo: new InputFileStream(fileStream, fileName),
                 caption: "Nice Picture",
                 cancellationToken: cancellationToken);
         }
